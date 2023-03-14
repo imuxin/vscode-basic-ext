@@ -2,6 +2,10 @@
   "name": "vscode-basic-ext",
   "displayName": "vscode-basic-ext",
   "description": "vscode basic extension",
+  "repository": {
+    "url": "https://github.com/imuxin/vscode-basic-ext"
+  },
+  "publisher": "QinglinCheng",
   "version": "0.0.1",
   "engines": {
     "vscode": "^1.54.0"
@@ -14,10 +18,28 @@
   "contributes": {
     "commands": [
       {
-        "command": "vscode-basic-ext.helloWorld",
-        "title": "Hello World"
+        "command": "vscode-basic-ext.copyAsBase64Encoding",
+        "title": "Copy As Base64 Encoding "
+      },
+      {
+        "command": "vscode-basic-ext.copyAsBase64Decoding",
+        "title": "Copy As Base64 Decoding "
       }
-    ]
+    ],
+    "menus": {
+      "editor/context": [
+        {
+          "command": "vscode-basic-ext.copyAsBase64Encoding",
+          "group": "9_cutcopypaste",
+          "when": "editorHasSelection"
+        },
+        {
+          "command": "vscode-basic-ext.copyAsBase64Decoding",
+          "group": "9_cutcopypaste",
+          "when": "editorHasSelection"
+        }
+      ]
+    }
   },
   "scripts": {
     "vscode:prepublish": "yarn run compile",
@@ -28,16 +50,19 @@
     "test": "node ./out/test/runTest.js"
   },
   "devDependencies": {
-    "@types/vscode": "^1.54.0",
     "@types/glob": "^8.1.0",
     "@types/mocha": "^10.0.1",
     "@types/node": "16.x",
+    "@types/vscode": "^1.54.0",
     "@typescript-eslint/eslint-plugin": "^5.53.0",
     "@typescript-eslint/parser": "^5.53.0",
+    "@vscode/test-electron": "^2.2.3",
     "eslint": "^8.34.0",
     "glob": "^8.1.0",
     "mocha": "^10.2.0",
-    "typescript": "^4.9.5",
-    "@vscode/test-electron": "^2.2.3"
+    "typescript": "^4.9.5"
+  },
+  "dependencies": {
+    "global": "^4.4.0"
   }
 }
